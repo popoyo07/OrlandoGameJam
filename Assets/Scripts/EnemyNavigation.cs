@@ -15,7 +15,7 @@ public class EnemyNavigation : MonoBehaviour
     private PlayerAudio playerAudio;
     private bool playerNoise;
     private bool isChasing = false;
-
+    private bool isSearching = false;
     public GameObject levelCanvas;
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +44,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (playerAudio != null)
         {
-            playerNoise = playerAudio.haveSound; 
+            playerNoise = playerAudio.haveSound;
         }
 
         if (playerNoise)
@@ -55,7 +55,7 @@ public class EnemyNavigation : MonoBehaviour
         else if (isChasing)
         {
             isChasing = false;
-            ReturnToPatrol();
+            StartCoroutine(SearchArea());
         }
         else
         {
@@ -65,7 +65,7 @@ public class EnemyNavigation : MonoBehaviour
 
     private void Patrol()
     {
-        if (agent.remainingDistance < .1f && wCount < waypoints.Length) 
+        if (agent.remainingDistance < .1f && wCount < waypoints.Length)
         {
             agent.SetDestination(waypoints[wCount].position);
             wCount++;
@@ -103,12 +103,32 @@ public class EnemyNavigation : MonoBehaviour
         agent.SetDestination(player.transform.position);
     }
 
-    private void ReturnToPatrol()
+    IEnumerator SearchArea()
+    {
+        isSearching = true;
+
+        for (int i = 0; i < 2; i++)
+        {
+            Vector3 randomSearchPos = transform.position + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f)
+            );
+
+            agent.SetDestination(randomSearchPos);
+            //Debug.Log("Give up but keep searching: " + i);
+
+            yield return new WaitForSeconds(4);
+        }
+
+        //Debug.Log("Give up");
+
+        isSearching = false;
+        ReturnToPatrol();
+    }
+
+    void ReturnToPatrol()
     {
         wCount = 0;
         agent.SetDestination(waypoints[wCount].position);
     }
 
-    
-
 }
+
