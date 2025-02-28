@@ -76,7 +76,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (playerNoise)
         {
-            Vector3 closetoplayer = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z - 0.5f);
+            Vector3 closetoplayer = new Vector3(player.transform.position.x - 1f, player.transform.position.y, player.transform.position.z - 1f);
             agent.SetDestination(closetoplayer);
         }
     }
