@@ -1369,6 +1369,7 @@ GameObject:
   - component: {fileID: 1552673201}
   - component: {fileID: 1552673200}
   - component: {fileID: 1552673204}
+  - component: {fileID: 1552673208}
   - component: {fileID: 1552673205}
   - component: {fileID: 1552673207}
   - component: {fileID: 1552673206}
@@ -1629,6 +1630,20 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1552673208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552673199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca03c4b8824002c42b81bb05297db334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1120139890}
+  Sensitivity: 300
 --- !u!1 &1580859614
 GameObject:
   m_ObjectHideFlags: 0
