@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float crouchHeightOffset = 0.5f; // Adjust position when crouching
 
+    public bool gotCaught = false;
+
     void Start()
     {
         isWalking = false;
@@ -25,13 +27,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        moveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        Crouching();
+        if (!gotCaught)
+        {
+            moveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            Crouching();
+        }
+      
     }
 
     private void FixedUpdate()
     {
-        if (moveVector != Vector3.zero)
+        if (moveVector != Vector3.zero && !gotCaught)
         {
             isWalking = true;
             float speed = isCrouching ? crouchSpeed : moveSpeed;
