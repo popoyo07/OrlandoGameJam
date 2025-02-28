@@ -16,12 +16,16 @@ public class EnemyNavigation : MonoBehaviour
     private bool playerNoise;
     private bool isChasing = false;
 
+    public GameObject levelCanvas;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.transform.tag == "Player")
         {
-            
+            player.GetComponent<PlayerMovement>().gotCaught = true;
+            transform.LookAt(player.transform.position);
+            Debug.Log("player is caught");
+            levelCanvas.GetComponent<MenuBehavior>().GameOver();
         }
     }
     // Start is called before the first frame update
@@ -92,5 +96,6 @@ public class EnemyNavigation : MonoBehaviour
         agent.SetDestination(waypoints[wCount].position);
     }
 
+    
 
 }
