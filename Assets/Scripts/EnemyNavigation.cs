@@ -26,6 +26,7 @@ public class EnemyNavigation : MonoBehaviour
             transform.LookAt(player.transform.position);
             Debug.Log("player is caught");
             levelCanvas.GetComponent<MenuBehavior>().GameOver();
+            agent.isStopped = true;
         }
     }
     // Start is called before the first frame update
