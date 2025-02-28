@@ -123,10 +123,10 @@ public class EnemyNavigation : MonoBehaviour
     {
         isSearching = true;
         agent.SetDestination(storePlayerLastPosition);
-        Debug.Log("Moving to last heard position...");
+        Debug.Log("Moving to last heard position");
 
         // **Ensure the enemy reaches the last heard position before searching**
-        while (agent.remainingDistance < 0.5f)
+        while (agent.remainingDistance < 0.1f)
         {
             yield return null;
         }
