@@ -140,22 +140,14 @@ public class EnemyNavigation : MonoBehaviour
         {
             Vector3 randomSearchPos = storePlayerLastPosition + new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
             agent.SetDestination(randomSearchPos);
-<<<<<<< Updated upstream
             Debug.Log("Give up but keep searching: " + i);
-=======
-            Debug.Log($"Searching area {i + 1}");
->>>>>>> Stashed changes
+
 
 
             yield return new WaitForSeconds(2f);
         }
 
-<<<<<<< Updated upstream
-        Debug.Log("Give up");
-
-=======
         Debug.Log("Search finished, returning to patrol.");
->>>>>>> Stashed changes
         isSearching = false;
         ReturnToPatrol();
     }
