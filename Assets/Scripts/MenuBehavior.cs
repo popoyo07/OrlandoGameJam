@@ -8,6 +8,7 @@ public class MenuBehavior : MonoBehaviour
 {
     public GameObject pause;
     public GameObject resume;
+    public GameObject gameOver;
     private bool isPaused;
 
     public EventSystem eventSystem;
@@ -15,6 +16,11 @@ public class MenuBehavior : MonoBehaviour
     public void LoadLevel()
     {
         SceneManager.LoadScene("Level");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     private void Awake()
     {
@@ -60,5 +66,11 @@ public class MenuBehavior : MonoBehaviour
         eventSystem.sendNavigationEvents = true;
     }
 
-   
+   public void GameOver()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        gameOver.SetActive(true);
+        // eventSystem.sendNavigationEvents = false;
+
+    }
 }
