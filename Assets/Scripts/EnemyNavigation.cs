@@ -46,7 +46,6 @@ public class EnemyNavigation : MonoBehaviour
 
     public void closeToPlayer()
     {
-        Vector3 nearPlayer = new Vector3
     }
 
     public void goToPlayer()
