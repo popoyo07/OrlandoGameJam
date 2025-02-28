@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Crouching()
     {
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
             if (!isCrouching)
             {
