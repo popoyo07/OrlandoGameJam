@@ -113,12 +113,12 @@ public class EnemyNavigation : MonoBehaviour
             );
 
             agent.SetDestination(randomSearchPos);
-            //Debug.Log("Give up but keep searching: " + i);
+            Debug.Log("Give up but keep searching: " + i);
 
             yield return new WaitForSeconds(4);
         }
 
-        //Debug.Log("Give up");
+        Debug.Log("Give up");
 
         isSearching = false;
         ReturnToPatrol();
