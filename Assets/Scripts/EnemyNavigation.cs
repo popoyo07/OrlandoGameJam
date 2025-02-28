@@ -22,12 +22,8 @@ public class EnemyNavigation : MonoBehaviour
         wCount = 0;
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(waypoints[wCount].position);
-        player = GameObject.FindWithTag("Player");
-
-        if (player != null)
-        {
-            playerAudio = player.GetComponent<PlayerAudio>();
-        }
+        player = GameObject.Find("Player");
+        playerAudio = player.GetComponent<PlayerAudio>();
     }
 
     // Update is called once per frame
@@ -35,7 +31,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (playerAudio != null)
         {
-            playerNoise = playerAudio.haveSound;
+            playerNoise = playerAudio.haveSound; 
         }
 
         if (playerNoise)
@@ -72,7 +68,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (playerNoise)
         {
-            Vector3 closetoplayer = new  Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z - 0.5f);
+            Vector3 closetoplayer = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z - 0.5f);
             agent.SetDestination(closetoplayer);
         }
     }
