@@ -17,6 +17,11 @@ public class MenuBehavior : MonoBehaviour
     {
         SceneManager.LoadScene("Level");
     }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     private void Awake()
     {
         Screen.SetResolution(1920, 1080, true);
@@ -65,6 +70,7 @@ public class MenuBehavior : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         gameOver.SetActive(true);
-        eventSystem.sendNavigationEvents = false;
+        // eventSystem.sendNavigationEvents = false;
+
     }
 }

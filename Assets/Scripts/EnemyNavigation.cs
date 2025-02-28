@@ -80,6 +80,18 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (playerNoise)
         {
+            /* float radius = 3f;
+          float angle = Random.Range(0f, 360f);
+
+          float SurroundingX = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+          float SurroundingZ = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+
+
+        Vector3 HotDudeSurroundingPlayer = new Vector3(player.transform.position.x + SurroundingX, 
+                                                         player.transform.position.y, 
+                                                         player.transform.position.z + SurroundingZ);
+          agent.SetDestination(HotDudeSurroundingPlayer);*/
+
             Vector3 closetoplayer = new Vector3(player.transform.position.x - 1f, player.transform.position.y, player.transform.position.z - 1f);
             agent.SetDestination(closetoplayer);
         }
