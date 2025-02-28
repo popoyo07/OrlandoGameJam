@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.ProBuilder.MeshOperations;
@@ -11,21 +12,42 @@ public class EnemyNavigation : MonoBehaviour
     public Transform[] waypoints;
     private int wCount;
     private GameObject player;
-    
+    private PlayerAudio playerAudio;
+    private bool playerNoise;
+    private bool isChasing = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        wCount = 0; 
+        wCount = 0;
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(waypoints[wCount].position);
-        player = GameObject.FindWithTag("Player");
-
+        player = GameObject.Find("Player");
+        playerAudio = player.GetComponent<PlayerAudio>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Patrol();
+        if (playerAudio != null)
+        {
+            playerNoise = playerAudio.haveSound; 
+        }
+
+        if (playerNoise)
+        {
+            isChasing = true;
+            closeToPlayer();
+        }
+        else if (isChasing)
+        {
+            isChasing = false;
+            ReturnToPatrol();
+        }
+        else
+        {
+            Patrol();
+        }
     }
 
     private void Patrol()
@@ -40,17 +62,27 @@ public class EnemyNavigation : MonoBehaviour
             wCount = 0;
             Debug.Log("Executes " + wCount);
         }
-
-
     }
 
     public void closeToPlayer()
     {
-        Vector3 nearPlayer = new Vector3
+        if (playerNoise)
+        {
+            Vector3 closetoplayer = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z - 0.5f);
+            agent.SetDestination(closetoplayer);
+        }
     }
 
     public void goToPlayer()
     {
         agent.SetDestination(player.transform.position);
     }
+
+    private void ReturnToPatrol()
+    {
+        wCount = 0;
+        agent.SetDestination(waypoints[wCount].position);
+    }
+
+
 }
