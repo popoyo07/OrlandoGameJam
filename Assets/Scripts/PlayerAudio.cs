@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerAudio : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerAudio : MonoBehaviour
     public float footstepVolume = 1.0f;
     public float stepInterval = 0.5f;
     private float nextStepTime = 0.0f;
+    public bool haveSound = false;
+    public bool walking;
 
     public LayerMask groundLayer;
 
@@ -27,11 +30,15 @@ public class PlayerAudio : MonoBehaviour
     {
         if (movement == null || audioSource == null) return;
 
-        bool walking = movement.isWalking;
+        walking = movement.isWalking;
         bool crouching = movement.isCrouching;
 
-        // Do not play sounds if crouching
-        if (crouching) return;
+        if (crouching)
+        {
+            haveSound = false;
+            audioSource.Stop(); // Stop playing audio when crouching
+            return; // Exit early to prevent footstep sound
+        }
 
         if (walking && Time.time >= nextStepTime)
         {
@@ -39,6 +46,7 @@ public class PlayerAudio : MonoBehaviour
             nextStepTime = Time.time + stepInterval;
         }
     }
+
 
     private void Footstep()
     {
@@ -48,6 +56,7 @@ public class PlayerAudio : MonoBehaviour
             if (hit.collider.CompareTag("Wood"))
             {
                 PlayFootstepSFX(ground, footstepVolume);
+                haveSound = true;
             }
         }
     }

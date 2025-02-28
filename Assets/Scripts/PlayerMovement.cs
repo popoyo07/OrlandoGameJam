@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isWalking = false;
+            //Debug.Log(isWalking);
         }
     }
 
