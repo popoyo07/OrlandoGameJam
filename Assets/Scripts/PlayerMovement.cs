@@ -7,17 +7,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveVector;
     public float moveSpeed = 5f;
-    private float crouchSpeed = 2.5f; // Slower speed when crouching
+    private float crouchSpeed = 2.5f;
     public bool isWalking;
     public bool isCrouching;
 
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1f, 1);
 
-    private float crouchHeightOffset = 0.5f; // Adjust position when crouching
+    private float crouchHeightOffset = 0.5f;
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         isWalking = false;
         isCrouching = false;
         rb = GetComponent<Rigidbody>();
