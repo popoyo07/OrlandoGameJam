@@ -19,6 +19,8 @@ public class EnemyNavigation : MonoBehaviour
     public GameObject levelCanvas;
     private Vector3 storePlayerLastPosition;
 
+    private Animator SusEnemy;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -47,6 +49,8 @@ public class EnemyNavigation : MonoBehaviour
         agent.SetDestination(waypoints[wCount].position);
         player = GameObject.Find("Player");
         playerAudio = player.GetComponent<PlayerAudio>();
+        SusEnemy = this.GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -76,6 +80,7 @@ public class EnemyNavigation : MonoBehaviour
 
         Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         transform.LookAt(targetPosition);
+        UpdateAnimation();
     }
 
     private void Patrol()
@@ -155,13 +160,28 @@ public class EnemyNavigation : MonoBehaviour
     }
 
 
-
-
     void ReturnToPatrol()
     {
         wCount = 0;
         agent.SetDestination(waypoints[wCount].position);
     }
+
+void UpdateAnimation()
+{
+    float speed = agent.velocity.magnitude;
+
+    if (speed > 0.01f)
+    {
+        SusEnemy.SetBool("isWalking", true);
+        SusEnemy.SetBool("isIdle", false);
+    }
+    else
+    {
+        SusEnemy.SetBool("isWalking", false);
+        SusEnemy.SetBool("isIdle", true);
+    }
+}
+
 
 }
 
