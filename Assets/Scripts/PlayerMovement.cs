@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = crouchScale;
             transform.position = new Vector3(transform.position.x, transform.position.y - crouchHeightOffset, transform.position.z);
         }
-        else if ((!crouchKeyPressed || isStaminaEmpty) && isCrouching) // Release to stand up && stamina is empty
+        else if ((!crouchKeyPressed || isStaminaEmpty) && isCrouching) // Release to stand up or when stamina is empty
         {
             isCrouching = false;
             transform.localScale = playerScale;

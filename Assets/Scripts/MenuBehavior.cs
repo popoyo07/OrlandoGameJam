@@ -22,12 +22,14 @@ public class MenuBehavior : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+
     }
     private void Awake()
     {
         Screen.SetResolution(1920, 1080, true);
-        stamina.SetActive(true);
     }
+
     // Update is called once per frame
     void Update()
     {
