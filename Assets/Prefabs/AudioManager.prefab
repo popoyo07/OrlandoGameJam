@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 116334162789220276}
   menuMusic: {fileID: 8300000, guid: b7b6a1033714f3d449421ab41f9afbce, type: 3}
-  levelMusic: {fileID: 0}
+  levelMusic: {fileID: 8300000, guid: 2ff32663c5a2732469c2c8c73c867c11, type: 3}
 --- !u!82 &116334162789220276
 AudioSource:
   m_ObjectHideFlags: 0

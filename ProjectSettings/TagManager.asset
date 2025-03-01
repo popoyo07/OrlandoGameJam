@@ -8,6 +8,7 @@ TagManager:
   - Music
   - CinemachineTarget
   - enemy
+  - EndGame
   layers:
   - Default
   - TransparentFX
