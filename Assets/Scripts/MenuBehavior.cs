@@ -78,4 +78,9 @@ public class MenuBehavior : MonoBehaviour
         // eventSystem.sendNavigationEvents = false;
 
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
