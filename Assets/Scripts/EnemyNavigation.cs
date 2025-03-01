@@ -55,6 +55,7 @@ public class EnemyNavigation : MonoBehaviour
         player = GameObject.Find("Player");
         playerAudio = player.GetComponent<PlayerAudio>();
         SusEnemy = this.GetComponent<Animator>();
+        monsterAudio = GetComponent<AudioSource>();
 
     }
 
