@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.Rendering.UI;
 
 public class EnemyNavigation : MonoBehaviour
 {
@@ -30,6 +31,11 @@ public class EnemyNavigation : MonoBehaviour
         {
             CapturePlayer();
         }
+        if (other.transform.tag == "EndGame")
+        {
+            Debug.Log("is Patroling");
+            Patrol();
+        }
     }
 
     private void CapturePlayer()
@@ -43,6 +49,7 @@ public class EnemyNavigation : MonoBehaviour
         levelCanvas.GetComponent<MenuBehavior>().GameOver();
         agent.isStopped = true;
         player.GetComponent<MouseLook>().enabled = false;
+        // gameObject.GetComponent<EnemyNavigation>().enabled = false;
     }
 
 
@@ -85,18 +92,22 @@ public class EnemyNavigation : MonoBehaviour
         {
             Patrol();
         }
-
+        Debug.Log(wCount);
         UpdateAnimation();
     }
 
     private void Patrol()
     {
-        if (agent.remainingDistance < .1f && wCount < waypoints.Length)
+        agent.speed = 1f;
+        // Debug.Log(agent.speed);
+
+        if (agent.remainingDistance < .2f && wCount < waypoints.Length)
         {
+            
             agent.SetDestination(waypoints[wCount].position);
             wCount++;
         }
-        else if (wCount >= waypoints.Length)
+        else if (wCount == waypoints.Length) 
         {
             wCount = 0;
             Debug.Log("Executes " + wCount);
@@ -119,6 +130,8 @@ public class EnemyNavigation : MonoBehaviour
                                                          player.transform.position.z + SurroundingZ);
           agent.SetDestination(HotDudeSurroundingPlayer);*/
 
+            agent.speed = 3.5f;
+            // Debug.Log(agent.speed);
             Vector3 closetoplayer = new Vector3(player.transform.position.x - 1f, player.transform.position.y, player.transform.position.z - 1f);
             agent.SetDestination(closetoplayer);
             storePlayerLastPosition = player.transform.position;
