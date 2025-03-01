@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 135464552745368013}
   - component: {fileID: 8025958226393467778}
   - component: {fileID: 4685517795148599648}
+  - component: {fileID: 6432758696850970455}
   - component: {fileID: 8676385060720746538}
   m_Layer: 0
   m_Name: Player
@@ -169,6 +170,7 @@ MonoBehaviour:
   moveSpeed: 5
   isWalking: 0
   isCrouching: 0
+  gotCaught: 0
 --- !u!114 &4685517795148599648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +194,24 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &6432758696850970455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817299058955739891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a665bc6c78c27c40bf8d79dbb913b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CrouchImage: {fileID: 0}
+  CurrentCrouch: 100
+  MaxCrouch: 100
+  CrouchCost: 10
+  CrouchRecharge: 5
+  isEmpty: 0
 --- !u!82 &8676385060720746538
 AudioSource:
   m_ObjectHideFlags: 0
