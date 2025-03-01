@@ -147,6 +147,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  isSearching: 0
   levelCanvas: {fileID: 0}
 --- !u!65 &5025527867610440855
 BoxCollider:
