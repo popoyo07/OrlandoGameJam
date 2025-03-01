@@ -5,12 +5,13 @@ using UnityEngine;
 public class InGameUI : MonoBehaviour
 {
     private MenuBehavior menuBehavior;
-    public TextMeshProUGUI textmesh;
+    public TextMeshProUGUI[] textmesh;
+    public TextMeshProUGUI textmesh_orignal;
     public GameObject stamina;
     private bool isPaused;
     private bool dead;
     private GameObject enemy;
-    public float duration = 3f;
+    public float duration = 2f;
     public GameObject player;
     public bool isFading = false;
     private AudioSource enemyAudioSource;
@@ -20,7 +21,6 @@ public class InGameUI : MonoBehaviour
     void Start()
     {
         menuBehavior = GetComponent<MenuBehavior>();
-        //enemy = GameObject.Find("Enemy/SK_Mannequin");
         enemy = GameObject.FindWithTag("enemy");
 
         if (enemy != null)
@@ -40,7 +40,11 @@ public class InGameUI : MonoBehaviour
             Debug.LogError("Enemy object not found!");
         }
 
-        textmesh.gameObject.SetActive(false);
+        foreach (var text in textmesh)
+        {
+            text.gameObject.SetActive(false);
+        }
+        textmesh_orignal.gameObject.SetActive(false);
     }
 
     void Update()
@@ -50,7 +54,11 @@ public class InGameUI : MonoBehaviour
 
         if (isPaused || dead)
         {
-            textmesh.gameObject.SetActive(false);
+            foreach (var text in textmesh)
+            {
+                text.gameObject.SetActive(false);
+            }
+            textmesh_orignal.gameObject.SetActive(false);
             stamina.SetActive(false);
             return;
         }
@@ -62,15 +70,13 @@ public class InGameUI : MonoBehaviour
 
         float distance = Vector3.Distance(player.transform.position, enemy.transform.position);
 
-        // Only trigger FadeIn when entering range
-        if (distance <= audioRange && !isInRange)
+        if (distance <= audioRange && !isInRange && !isFading)
         {
             isInRange = true;
             StartCoroutine(FadeIn());
             Debug.Log($"Player entered audio range: {audioRange}");
         }
-        // Only trigger FadeOut when leaving range
-        else if (distance > audioRange && isInRange)
+        else if (distance > audioRange && isInRange && !isFading)
         {
             isInRange = false;
             StartCoroutine(FadeOut());
@@ -81,17 +87,29 @@ public class InGameUI : MonoBehaviour
     IEnumerator FadeIn()
     {
         isFading = true;
-        textmesh.gameObject.SetActive(true);
-        Color color = textmesh.color;
-        color.a = 0;
-        textmesh.color = color;
-
         float StartTimer = 0;
+
+        foreach (var text in textmesh)
+        {
+            text.gameObject.SetActive(true);
+        }
+        textmesh_orignal.gameObject.SetActive(true);
+
         while (StartTimer < duration)
         {
             StartTimer += Time.deltaTime;
-            color.a = Mathf.Clamp01(StartTimer / duration);
-            textmesh.color = color;
+            byte alphaText = (byte)(Mathf.Clamp01(StartTimer / duration) * 255);
+            float alphaOrignal = Mathf.Clamp01(StartTimer / duration);
+
+            foreach (var text in textmesh)
+            {
+                Color32 color = text.faceColor;
+                color.a = alphaText;
+                text.faceColor = color;
+            }
+            Color colorOrignal = textmesh_orignal.color;
+            colorOrignal.a = alphaOrignal;
+            textmesh_orignal.color = colorOrignal;
             yield return null;
         }
         isFading = false;
@@ -100,18 +118,31 @@ public class InGameUI : MonoBehaviour
     IEnumerator FadeOut()
     {
         isFading = true;
-        Color color = textmesh.color;
         float StartTimer = 0;
 
         while (StartTimer < duration)
         {
             StartTimer += Time.deltaTime;
-            color.a = Mathf.Clamp01(1 - (StartTimer / duration));
-            textmesh.color = color;
+            byte alphaText = (byte)(Mathf.Clamp01(1 - (StartTimer / duration)) * 255);
+            float alphaOrignal = Mathf.Clamp01(1 - (StartTimer / duration));
+
+            foreach (var text in textmesh)
+            {
+                Color32 color = text.faceColor;
+                color.a = alphaText;
+                text.faceColor = color;
+            }
+            Color colorOrignal = textmesh_orignal.color;
+            colorOrignal.a = alphaOrignal;
+            textmesh_orignal.color = colorOrignal;
             yield return null;
         }
 
-        textmesh.gameObject.SetActive(false);
+        foreach (var text in textmesh)
+        {
+            text.gameObject.SetActive(false);
+        }
+        textmesh_orignal.gameObject.SetActive(false);
         isFading = false;
     }
 }
