@@ -65,6 +65,8 @@ public class EnemyNavigation : MonoBehaviour
         {
             isChasing = true;
             closeToPlayer();
+            Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            transform.LookAt(targetPosition);
         }
         else if (isChasing)
         {
@@ -78,8 +80,6 @@ public class EnemyNavigation : MonoBehaviour
             Patrol();
         }
 
-        Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-        transform.LookAt(targetPosition);
         UpdateAnimation();
     }
 

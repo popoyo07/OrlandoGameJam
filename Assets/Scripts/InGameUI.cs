@@ -20,7 +20,8 @@ public class InGameUI : MonoBehaviour
     void Start()
     {
         menuBehavior = GetComponent<MenuBehavior>();
-        enemy = GameObject.Find("Enemy/SK_Mannequin");
+        //enemy = GameObject.Find("Enemy/SK_Mannequin");
+        enemy = GameObject.FindWithTag("enemy");
 
         if (enemy != null)
         {
