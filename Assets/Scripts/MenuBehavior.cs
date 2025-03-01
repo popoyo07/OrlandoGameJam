@@ -9,6 +9,7 @@ public class MenuBehavior : MonoBehaviour
     public GameObject pause;
     public GameObject resume;
     public GameObject gameOver;
+    public GameObject stamina;
     private bool isPaused;
 
     public EventSystem eventSystem;
@@ -25,6 +26,7 @@ public class MenuBehavior : MonoBehaviour
     private void Awake()
     {
         Screen.SetResolution(1920, 1080, true);
+        stamina.SetActive(true);
     }
     // Update is called once per frame
     void Update()
@@ -54,6 +56,7 @@ public class MenuBehavior : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         eventSystem.sendNavigationEvents = false;
         Time.timeScale = 0;
+        stamina.SetActive(false);
 
     }
 
@@ -64,12 +67,16 @@ public class MenuBehavior : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pause.SetActive(false);
         eventSystem.sendNavigationEvents = true;
+        stamina.SetActive(true);
+
     }
 
-   public void GameOver()
+    public void GameOver()
     {
         Cursor.lockState = CursorLockMode.None;
         gameOver.SetActive(true);
+        stamina.SetActive(false);
+
         // eventSystem.sendNavigationEvents = false;
 
     }
