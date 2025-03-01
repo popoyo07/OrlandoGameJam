@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!gotCaught)
         {
-            moveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             Crouching();
         }
     }
@@ -53,9 +53,10 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isWalking = false;
-            //Debug.Log(isWalking);
+            rb.velocity = Vector3.zero;
         }
     }
+
 
     private void Crouching()
     {
