@@ -73,6 +73,9 @@ public class EnemyNavigation : MonoBehaviour
         {
             Patrol();
         }
+
+        Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        transform.LookAt(targetPosition);
     }
 
     private void Patrol()
