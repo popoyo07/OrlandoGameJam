@@ -26,7 +26,10 @@ public class MouseLook : MonoBehaviour
         X += Input.GetAxis("Mouse X") * (Sensitivity * Time.deltaTime);
         Y -= Input.GetAxis("Mouse Y") * (Sensitivity * Time.deltaTime);
         Y = Mathf.Clamp(Y, MIN_Y, MAX_Y);
+    }
 
+    private void LateUpdate()
+    {
         transform.rotation = Quaternion.Euler(0, X, 0);
         cameraTransform.localRotation = Quaternion.Euler(Y, 0, 0);
     }

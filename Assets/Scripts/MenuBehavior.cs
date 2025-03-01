@@ -9,7 +9,8 @@ public class MenuBehavior : MonoBehaviour
     public GameObject pause;
     public GameObject resume;
     public GameObject gameOver;
-    private bool isPaused;
+    public bool isPaused;
+    public bool isGameOver;
 
     public EventSystem eventSystem;
     // Start is called before the first frame update
@@ -20,12 +21,15 @@ public class MenuBehavior : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        isGameOver = false;
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
     }
     private void Awake()
     {
         Screen.SetResolution(1920, 1080, true);
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -54,7 +58,6 @@ public class MenuBehavior : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         eventSystem.sendNavigationEvents = false;
         Time.timeScale = 0;
-
     }
 
     public void LoadContinueGame()
@@ -66,11 +69,18 @@ public class MenuBehavior : MonoBehaviour
         eventSystem.sendNavigationEvents = true;
     }
 
-   public void GameOver()
+    public void GameOver()
     {
+        isGameOver = true;
         Cursor.lockState = CursorLockMode.None;
+        pause.SetActive(false);
         gameOver.SetActive(true);
         // eventSystem.sendNavigationEvents = false;
 
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

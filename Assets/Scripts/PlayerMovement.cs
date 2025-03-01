@@ -7,32 +7,38 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveVector;
     public float moveSpeed = 5f;
-    private float crouchSpeed = 2.5f; // Slower speed when crouching
+    private float crouchSpeed = 2.5f;
     public bool isWalking;
     public bool isCrouching;
 
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale = new Vector3(1, 1f, 1);
 
-    private float crouchHeightOffset = 0.5f; // Adjust position when crouching
+    private float crouchHeightOffset = 0.5f;
 
     public bool gotCaught = false;
+
+    private bool isStaminaEmpty;
+    private Stamina stamina;
 
     void Start()
     {
         isWalking = false;
         isCrouching = false;
         rb = GetComponent<Rigidbody>();
+        stamina = GetComponent<Stamina>();
+        
     }
 
     void Update()
     {
+        isStaminaEmpty = stamina.isEmpty;
+
         if (!gotCaught)
         {
-            moveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             Crouching();
         }
-      
     }
 
     private void FixedUpdate()
@@ -47,31 +53,27 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isWalking = false;
-            //Debug.Log(isWalking);
+            rb.velocity = Vector3.zero;
         }
     }
 
+
     private void Crouching()
     {
-        if (Input.GetKey(KeyCode.C))
+        bool crouchKeyPressed = Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+
+        if (crouchKeyPressed && !isCrouching && !isStaminaEmpty)
         {
-            if (!isCrouching)
-            {
-                isCrouching = true;
-                transform.localScale = crouchScale;
-                transform.position = new Vector3(transform.position.x, transform.position.y - crouchHeightOffset, transform.position.z);
-                // Debug.Log(isWalking);
-                // Debug.Log(isCrouching);
-            }
+            isCrouching = true;
+            transform.localScale = crouchScale;
+            transform.position = new Vector3(transform.position.x, transform.position.y - crouchHeightOffset, transform.position.z);
         }
-        else // Release to stand up
+        else if ((!crouchKeyPressed || isStaminaEmpty) && isCrouching) // Release to stand up or when stamina is empty
         {
-            if (isCrouching)
-            {
-                isCrouching = false;
-                transform.localScale = playerScale;
-                transform.position = new Vector3(transform.position.x, transform.position.y + crouchHeightOffset, transform.position.z);
-            }
+            isCrouching = false;
+            transform.localScale = playerScale;
+            transform.position = new Vector3(transform.position.x, transform.position.y + crouchHeightOffset, transform.position.z);
         }
     }
+
 }

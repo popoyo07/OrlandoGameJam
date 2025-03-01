@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wood
+  - Music
+  - CinemachineTarget
+  - enemy
   layers:
   - Default
   - TransparentFX
