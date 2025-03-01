@@ -20,6 +20,8 @@ public class EnemyNavigation : MonoBehaviour
     private Vector3 storePlayerLastPosition;
 
     private Animator SusEnemy;
+    AudioSource monsterAudio;
+    [SerializeField] AudioClip catchingSound;
 
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +34,9 @@ public class EnemyNavigation : MonoBehaviour
 
     private void CapturePlayer()
     {
+        monsterAudio.clip = catchingSound;
+        monsterAudio.loop = false;
+        monsterAudio.Play();
         player.GetComponent<PlayerMovement>().gotCaught = true;
         transform.LookAt(player.transform.position);
         Debug.Log("player is caught");
