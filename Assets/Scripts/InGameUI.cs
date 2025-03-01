@@ -15,7 +15,7 @@ public class InGameUI : MonoBehaviour
     public bool isFading = false;
     private AudioSource enemyAudioSource;
     private float audioRange;
-    private bool isInRange = false; // New variable to track range status
+    private bool isInRange = false;
 
     void Start()
     {

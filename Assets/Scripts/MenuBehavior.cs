@@ -73,6 +73,7 @@ public class MenuBehavior : MonoBehaviour
     {
         isGameOver = true;
         Cursor.lockState = CursorLockMode.None;
+        pause.SetActive(false);
         gameOver.SetActive(true);
         // eventSystem.sendNavigationEvents = false;
 

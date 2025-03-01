@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveVector;
     public float moveSpeed = 5f;
-    private float crouchSpeed = 2.5f; // Slower speed when crouching
+    private float crouchSpeed = 2.5f;
     public bool isWalking;
     public bool isCrouching;
 
