@@ -950,6 +950,8 @@ MonoBehaviour:
   - {fileID: 1549518742}
   - {fileID: 815634558}
   - {fileID: 1848199004}
+  isSearching: 0
+  levelCanvas: {fileID: 0}
 --- !u!1 &1549518741
 GameObject:
   m_ObjectHideFlags: 0
