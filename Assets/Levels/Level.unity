@@ -4933,6 +4933,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1862903471}
     m_Modifications:
+    - target: {fileID: 818822351399483075, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
+      propertyPath: m_Color.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 818822351399483075, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 818822351399483075, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 818822351399483075, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7071678172945416768, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5018,8 +5034,20 @@ PrefabInstance:
       value: Stamina
       objectReference: {fileID: 0}
     - target: {fileID: 7437279722875700581, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437279722875700581, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710338103429258986, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7753528740623606452, guid: bd7fbab88bcf3d74592ec4f0d5d93a9f, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
