@@ -40,7 +40,6 @@ public class EnemyNavigation : MonoBehaviour
 
     private void CapturePlayer()
     {
-        player.transform.LookAt(transform.position);
         monsterAudio.clip = catchingSound;
         monsterAudio.loop = false;
         monsterAudio.Play();
@@ -48,15 +47,39 @@ public class EnemyNavigation : MonoBehaviour
         transform.LookAt(player.transform.position);
 
         Camera playerCamera = player.GetComponentInChildren<Camera>();
-        playerCamera.transform.LookAt(enemyHead);
+        if (playerCamera != null && enemyHead != null)
+        {
+            StartCoroutine(SmoothLookAt(playerCamera, enemyHead.position, 0.2f));
+        }
 
         Debug.Log("player is caught");
-        levelCanvas.GetComponent<MenuBehavior>().GameOver();
         agent.isStopped = true;
         player.GetComponent<MouseLook>().enabled = false;
+
+        StartCoroutine(GameOverWithDelay(2.5f));
     }
 
+    private IEnumerator SmoothLookAt(Camera camera, Vector3 targetPosition, float duration)
+    {
+        float Timer = 0f;
+        Quaternion startRotation = camera.transform.rotation;
+        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - camera.transform.position);
 
+        while (Timer < duration)
+        {
+            camera.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, Timer / duration);
+            Timer += Time.deltaTime;
+            yield return null;
+        }
+
+        camera.transform.rotation = targetRotation;
+    }
+
+    private IEnumerator GameOverWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        levelCanvas.GetComponent<MenuBehavior>().GameOver();
+    }
     // Start is called before the first frame update
     void Start()
     {
