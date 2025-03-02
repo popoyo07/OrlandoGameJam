@@ -40,13 +40,14 @@ public class EnemyNavigation : MonoBehaviour
 
     private void CapturePlayer()
     {
-        agent.isStopped = true;
+
         SusEnemy.StartPlayback();
+        agent.isStopped = true;
 
         monsterAudio.clip = catchingSound;
         monsterAudio.loop = false;
         monsterAudio.Play();
-        transform.LookAt(player.transform.position); // falling in love
+        transform.LookAt(player.transform.position); // bro, didnt want to falling in love
         player.transform.LookAt(transform.position);// falling in love 2
         player.GetComponent<PlayerMovement>().gotCaught = true;
         Camera playerCamera = player.GetComponentInChildren<Camera>();
