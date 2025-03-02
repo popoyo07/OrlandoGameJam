@@ -40,12 +40,15 @@ public class EnemyNavigation : MonoBehaviour
 
     private void CapturePlayer()
     {
+        agent.isStopped = true;
+        SusEnemy.StartPlayback();
+
         monsterAudio.clip = catchingSound;
         monsterAudio.loop = false;
         monsterAudio.Play();
+        transform.LookAt(player.transform.position); // falling in love
+        player.transform.LookAt(transform.position);// falling in love 2
         player.GetComponent<PlayerMovement>().gotCaught = true;
-        transform.LookAt(player.transform.position);
-
         Camera playerCamera = player.GetComponentInChildren<Camera>();
         if (playerCamera != null && enemyHead != null)
         {
@@ -53,7 +56,6 @@ public class EnemyNavigation : MonoBehaviour
         }
 
         Debug.Log("player is caught");
-        agent.isStopped = true;
         player.GetComponent<MouseLook>().enabled = false;
 
         StartCoroutine(GameOverWithDelay(2.5f));
@@ -73,12 +75,16 @@ public class EnemyNavigation : MonoBehaviour
         }
 
         camera.transform.rotation = targetRotation;
+        Debug.Log("camera rotated");
+
     }
 
     private IEnumerator GameOverWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         levelCanvas.GetComponent<MenuBehavior>().GameOver();
+        Debug.Log("GameOver");
+
     }
     // Start is called before the first frame update
     void Start()
