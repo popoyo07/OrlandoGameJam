@@ -101,9 +101,8 @@ public class EnemyNavigation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
         if (playerAudio != null)
         {
             playerNoise = playerAudio.haveSound;
@@ -137,14 +136,20 @@ public class EnemyNavigation : MonoBehaviour
     {
         if (agent.remainingDistance < .1f && wCount < waypoints.Length)
         {
+            Debug.Log("Current waypoint " + wCount);
+            if (wCount < waypoints.Length - 1) 
+            {
+                wCount++;
+            } else
+            {
+                wCount = 0;
+            }
+
             agent.SetDestination(waypoints[wCount].position);
-            wCount++;
+
+
         }
-        else if (wCount >= waypoints.Length)
-        {
-            wCount = 0;
-            Debug.Log("Executes " + wCount);
-        }
+
     }
 
     public void closeToPlayer()
