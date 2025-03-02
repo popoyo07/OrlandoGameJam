@@ -29,11 +29,17 @@ public class EnemyNavigation : MonoBehaviour
         if (other.transform.tag == "Player")
         {
             CapturePlayer();
+        }else if (other.transform.tag == "EndGame")
+        {
+            agent.isStopped = true;
+            Patrol();
+            agent.isStopped = false;
         }
     }
 
     private void CapturePlayer()
     {
+        player.transform.LookAt(transform.position);
         monsterAudio.clip = catchingSound;
         monsterAudio.loop = false;
         monsterAudio.Play();
@@ -67,15 +73,16 @@ public class EnemyNavigation : MonoBehaviour
         {
             playerNoise = playerAudio.haveSound;
         }
-
-        if (playerNoise)
+        NavMeshHit hit;
+      
+        if (playerNoise && NavMesh.SamplePosition(player.transform.position, out hit, 1f, NavMesh.AllAreas))
         {
             isChasing = true;
             closeToPlayer();
 
         }
 
-        else if (isChasing)
+        else if (isChasing )
         {
             isChasing = false;
             StartCoroutine(GotoLastHeard());
@@ -84,6 +91,7 @@ public class EnemyNavigation : MonoBehaviour
 
         else
         {
+            //isChasing = false ;
             Patrol();
         }
 
