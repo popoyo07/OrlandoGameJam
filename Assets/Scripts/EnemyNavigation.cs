@@ -18,6 +18,7 @@ public class EnemyNavigation : MonoBehaviour
     public bool isSearching = false;
     public GameObject levelCanvas;
     private Vector3 storePlayerLastPosition;
+    public Transform enemyHead;
 
     private Animator SusEnemy;
     AudioSource monsterAudio;
@@ -45,6 +46,10 @@ public class EnemyNavigation : MonoBehaviour
         monsterAudio.Play();
         player.GetComponent<PlayerMovement>().gotCaught = true;
         transform.LookAt(player.transform.position);
+
+        Camera playerCamera = player.GetComponentInChildren<Camera>();
+        playerCamera.transform.LookAt(enemyHead);
+
         Debug.Log("player is caught");
         levelCanvas.GetComponent<MenuBehavior>().GameOver();
         agent.isStopped = true;
@@ -171,18 +176,9 @@ public class EnemyNavigation : MonoBehaviour
 
         Debug.Log("Search finished, returning to patrol.");
         isSearching = false;
-        ReturnToPatrol();
+        Patrol();
     }
 
-
-
-    void ReturnToPatrol()
-    {
-        wCount = 0;
-        agent.SetDestination(waypoints[wCount].position);
-        transform.LookAt(waypoints[wCount].position);
-
-    }
 
     void UpdateAnimation()
     {
