@@ -63,6 +63,11 @@ public class InGameUI : MonoBehaviour
             return;
         }
 
+        if (!isPaused)
+        {
+            stamina.SetActive(true);
+        }
+
         if (enemy == null || enemyAudioSource == null)
         {
             return;

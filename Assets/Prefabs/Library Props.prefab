@@ -4590,6 +4590,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4827422413636094, guid: 81fc7effd0386764781ee9fcbbd39bf0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.352
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180561048493332079, guid: 81fc7effd0386764781ee9fcbbd39bf0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.352
+      objectReference: {fileID: 0}
     - target: {fileID: 8951588626214036331, guid: 81fc7effd0386764781ee9fcbbd39bf0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4657,8 +4665,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108884755902363616, guid: 10fc85374832c474e940baee7f8230fb, type: 3}
+      propertyPath: m_Range
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 108884755902363616, guid: 10fc85374832c474e940baee7f8230fb, type: 3}
       propertyPath: m_Intensity
-      value: 0.5
+      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5287,6 +5299,14 @@ PrefabInstance:
     - target: {fileID: 4240822575173696, guid: 81fc7effd0386764781ee9fcbbd39bf0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827422413636094, guid: 81fc7effd0386764781ee9fcbbd39bf0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.274
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180561048493332079, guid: 81fc7effd0386764781ee9fcbbd39bf0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.294
       objectReference: {fileID: 0}
     - target: {fileID: 8951588626214036331, guid: 81fc7effd0386764781ee9fcbbd39bf0, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7567,8 +7587,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 108884755902363616, guid: 10fc85374832c474e940baee7f8230fb, type: 3}
+      propertyPath: m_Range
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 108884755902363616, guid: 10fc85374832c474e940baee7f8230fb, type: 3}
       propertyPath: m_Intensity
-      value: 0.5
+      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
