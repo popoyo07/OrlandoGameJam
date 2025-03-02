@@ -168,18 +168,9 @@ public class EnemyNavigation : MonoBehaviour
 
         Debug.Log("Search finished, returning to patrol.");
         isSearching = false;
-        ReturnToPatrol();
+        Patrol();
     }
 
-
-
-    void ReturnToPatrol()
-    {
-        wCount = 0;
-        agent.SetDestination(waypoints[wCount].position);
-        transform.LookAt(waypoints[wCount].position);
-
-    }
 
     void UpdateAnimation()
     {
