@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Crouching()
     {
-        bool crouchKeyPressed = Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
+        bool crouchKeyPressed = Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.Z);
 
         if (crouchKeyPressed && !isCrouching && !isStaminaEmpty)
         {

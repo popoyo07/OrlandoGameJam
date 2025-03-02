@@ -17,9 +17,11 @@ public class InGameUI : MonoBehaviour
     private AudioSource enemyAudioSource;
     private float audioRange;
     private bool isInRange = false;
+    public GameObject startText;
 
     void Start()
     {
+        startText = GameObject.Find("StartText");
         menuBehavior = GetComponent<MenuBehavior>();
         enemy = GameObject.FindWithTag("enemy");
 
@@ -45,6 +47,7 @@ public class InGameUI : MonoBehaviour
             text.gameObject.SetActive(false);
         }
         textmesh_orignal.gameObject.SetActive(false);
+        StartCoroutine(waitFor(5f));
     }
 
     void Update()
@@ -88,7 +91,18 @@ public class InGameUI : MonoBehaviour
             Debug.Log($"Player exited audio range: {audioRange}");
         }
     }
+    IEnumerator waitFor(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime) ;
 
+        startTextDis();
+        //yield return null;
+    }
+
+    public void startTextDis()
+    {
+        startText.SetActive(false);
+    }
     IEnumerator FadeIn()
     {
         isFading = true;
