@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-//using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class EnemyNavigation : MonoBehaviour
 {
